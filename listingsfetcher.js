@@ -8,3 +8,9 @@ w3.eth.defaultChain = "goerli";
 
 let Contract = new w3.eth.Contract(Address(), ABI());
 setMarketplaceContract(Contract);
+Contract.methods
+  .getActiveListings()
+  .call({ from: accounts[0] })
+  .then((assets) => {
+    setRentalsListed(assets);
+  });
