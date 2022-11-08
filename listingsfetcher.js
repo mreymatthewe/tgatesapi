@@ -1,10 +1,10 @@
 import express from "express";
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
-import ABI from "./ABI.js";
+import { Contract, ABI, Address } from "./Contract.js";
+let Web3 = require("web3");
 
-const sdk = new ThirdwebSDK("goerli");
+let w3 = new Web3(ethereum);
+w3.eth.defaultChain = "goerli";
 
-const contract = await sdk.getContractFromAbi(
-  "0x4411cB7c958F40e7B60548F64C0b4B497729f417",
-  ABI()
-);
+let Contract = new w3.eth.Contract(Address(), ABI());
+setMarketplaceContract(Contract);
