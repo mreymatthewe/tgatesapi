@@ -1,13 +1,13 @@
 import express from "express";
 import bodyParser from "body-parser";
-import listingsfetcher from "./listingsfetcher.js";
+import Escrows from "./routes/Escrows.js";
 
 const app = express();
 const PORT = 3000;
 
 app.use(bodyParser.json());
 
-app.use("/listingsfetcher", listingsfetcher);
+app.use("/Escrows", Escrows);
 
 app.get("/", (req, res) => {
   res.send("Index");
