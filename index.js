@@ -1,18 +1,16 @@
 import express from "express";
 import bodyParser from "body-parser";
-import listingsRoutes from "./routes/listings.js";
+import listingsfetcher from "./listingsfetcher.js";
 
 const app = express();
 const PORT = 3000;
 
 app.use(bodyParser.json());
 
-app.use("/listings", listingsRoutes);
+app.use("/listingsfetcher", listingsfetcher);
 
 app.get("/", (req, res) => {
-  console.log("TEST");
-
-  res.send("Hello");
+  res.send("Index");
 });
 
 app.listen(PORT, () => {
