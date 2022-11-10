@@ -3,7 +3,6 @@ import bodyParser from "body-parser";
 import Escrows from "./routes/Escrows.js";
 
 const app = express();
-const PORT = 3000;
 
 app.use(bodyParser.json());
 
@@ -13,6 +12,6 @@ app.get("/", (req, res) => {
   res.send("Index");
 });
 
-app.listen(PORT, () => {
-  console.log(`Server Running on Port: http://localhost:${PORT}`);
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`Server Running on Port: ${PORT}`);
 });
