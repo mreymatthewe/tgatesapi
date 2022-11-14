@@ -9,15 +9,25 @@ router.get("/", async (req, res) => {
   res.send("Please Enter the Wallet Address");
 });
 
-router.get("/:id", async (req, res) => {
-  let address = req.params;
-  let data = null;
+router.post("/", async (req, res) => {
+  let addresses = req.query;
+
+  let data = {};
+  let tokenIds = [];
+  let filteredTokenIds = [];
   try {
-    data = await contract.call("getEscrowsByAddress", address.id);
+    data = await contract.call("getEscrowsByAddress", addresses.walletaddress);
+    tokenIds = Object.entries(data);
+    for (let x = 0; x <= tokenIds.length; x++) {
+      if (tokenIds[0][1][2] == addresses.contractaddress) {
+        filteredTokenIds.push(tokenIds[x][1][1]);
+      }
+    }
   } catch {
-    data = "No Results. Address you entered may have no records or invalid";
+    tokenIds = "No Results. Address you entered may have no records or invalid";
   }
-  res.send(data);
+
+  res.send(filteredTokenIds);
 });
 
 export default router;
