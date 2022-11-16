@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
     data = await contract.call("getEscrowsByAddress", addresses.walletaddress);
     tokenIds = Object.entries(data);
     for (let x = 0; x <= tokenIds.length; x++) {
-      if (tokenIds[0][1][2] == addresses.contractaddress) {
+      if (tokenIds[x][1][2] == addresses.contractaddress) {
         filteredTokenIds.push(tokenIds[x][1][1]);
       }
     }
